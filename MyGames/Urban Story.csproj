@@ -45,6 +45,7 @@
     <Compile Include="Core\Class\Abstract\Perso.cs" />
     <Compile Include="Core\Class\Player.cs" />
     <Compile Include="Core\Class\Power.cs" />
+    <Compile Include="Core\Class\Store.cs" />
     <Compile Include="Core\Class\Weapon.cs" />
     <Compile Include="Core\Zone.cs" />
     <Compile Include="Core\Model.cs" />

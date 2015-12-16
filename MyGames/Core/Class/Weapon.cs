@@ -5,13 +5,85 @@ using System.Text;
 
 namespace MyGames.Core
 {
+    enum nameGun
+    {
+        classic_gun,
+        plasma_gun,
+        fire_gun,
+        automatic_gun,
+        colt
+    };
+
+    enum nameSmg
+    {
+        classic_smg,
+        plasma_smg,
+        fire_smg,
+
+    };
+
+    enum nameSniper
+    {
+        classic_sniper,
+        plasma_sniper,
+        automatic_sniper,
+    };
+
+    enum nameDual
+    {
+        dual_classic,
+        dual_plasma,
+        dual_fire,
+        dual_automatic,
+        dual_colt
+    };
+
     class Weapon
     {
         private int dmg;
         private float firerate;
+        private string name;
+        private int ammo;
+
+        //random Weapon
+        public Weapon(string type)
+        {
+            Random tmp = new Random();
+            switch (type)
+            {
+                case "gun":
+                    switch (tmp.Next(0, 4))
+                    {
+                        default:
+                            break;  
+                    }
+                    break;
+                case "smg":
+                    switch (tmp.Next(0, 2))
+                    {
+                        default:
+                            break;
+                    }
+                    break;
+                case "Sniper":
+                    switch (tmp.Next(0, 2))
+                    {
+                        default:
+                            break;
+                    }
+                    break;
+                case "Dual":
+                    switch (tmp.Next(0, 4))
+                    {
+                        default:
+                            break;
+                    }
+                    break;
+            }
+        }
 
         //Construct weapons with a type and a name
-        public Weapon(String type, String name)
+        public Weapon(string type, string name)
         {
             switch (type)
             {
@@ -21,6 +93,8 @@ namespace MyGames.Core
                         default:
                             dmg = 10;
                             firerate = 5.0f;
+                            name = "Classic";
+                            ammo = -1;
                             break;
                     }
                     break;
@@ -56,6 +130,12 @@ namespace MyGames.Core
                     firerate = 1.0f;
                     break;
             }
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
         }
     }
 }
