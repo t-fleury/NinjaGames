@@ -1,0 +1,26 @@
+D:\Dev\MyGames\MyGames\obj\x86\Debug\MyGames.exe
+D:\Dev\MyGames\MyGames\obj\x86\Debug\MyGames.pdb
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\MyGames.exe
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\MyGames.pdb
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\MonoGame.Framework.dll
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.dll
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.XAudio2.dll
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.Direct3D11.dll
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.DXGI.dll
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.Direct2D1.dll
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.XInput.dll
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.RawInput.dll
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.Direct3D9.dll
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\MonoGame.Framework.xml
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.xml
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.XAudio2.xml
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.Direct3D11.xml
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.DXGI.xml
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.Direct2D1.xml
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.XInput.xml
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.RawInput.xml
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\SharpDX.Direct3D9.xml
+D:\Dev\MyGames\MyGames\obj\x86\Debug\Urban Story.csprojResolveAssemblyReference.cache
+D:\Dev\MyGames\MyGames\bin\Windows\Debug\Content\Shuriken.mp3
