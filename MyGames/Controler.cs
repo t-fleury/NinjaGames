@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MyGames.Core;
+using System;
 
 namespace MyGames
 {
@@ -10,17 +11,17 @@ namespace MyGames
     /// </summary>
     public class Controler : Game
     {
-        GraphicsDeviceManager graphics;
+        public static GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        GameObject obTmp; 
+        Player player; 
         
         public Controler()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            this.graphics.PreferredBackBufferWidth = 1280;
-            this.graphics.PreferredBackBufferHeight = 720;
-            obTmp = new GameObject(0, 0, 0, 0);
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
+            
         }
 
         /// <summary>
@@ -32,7 +33,7 @@ namespace MyGames
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            player = new Player(10, 10, 0, 0);
             base.Initialize();
         }
 
@@ -44,6 +45,7 @@ namespace MyGames
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            player.Texture = Content.Load<Texture2D>("tmpTest");
             // TODO: use this.Content to load your game content here
         }
 
@@ -65,7 +67,7 @@ namespace MyGames
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            player.move(Keyboard.GetState());
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -84,7 +86,7 @@ namespace MyGames
 
             base.Draw(gameTime);
             spriteBatch.Begin();
-            obTmp.Draw(spriteBatch);
+            player.Draw(spriteBatch);
             spriteBatch.End();
         }
     }

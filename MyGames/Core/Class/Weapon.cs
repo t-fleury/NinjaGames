@@ -98,10 +98,10 @@ namespace MyGames.Core
                             break;
                     }
                     break;
-                case "sniper" :
+                case "sniper":
                     switch (name)
                     {
-                     default:
+                        default:
                             dmg = 50;
                             firerate = 0.5f;
                             break;
@@ -126,8 +126,14 @@ namespace MyGames.Core
                     }
                     break;
                 default:
-                    dmg = 10;
-                    firerate = 1.0f;
+                    switch (name) {
+                        default:
+                            dmg = 10;
+                            firerate = 1.0f;
+                            this.name = name;
+                            ammo = -1;
+                            break;
+                }
                     break;
             }
         }

@@ -28,6 +28,7 @@ namespace MyGames.Core
             dmg = 20;
             armor = 50;
             stealth = 75;
+            weapons = new Weapon[2] {null, null};
             weapons[0] = new Weapon("shuriken", "classic");
             weaponEquip = typeOfWeapon.MAIN;
         }
@@ -58,11 +59,27 @@ namespace MyGames.Core
             weaponEquip = 0;
         }
 
-        #region Control (TO DO)
+        #region Control
         public void move(KeyboardState state)
         {//directionnal cross
+            if (state.IsKeyDown(Keys.Left))
+            {
+                position.X--;
+            }
+            if (state.IsKeyDown(Keys.Right))
+            {
+                position.X++;
+            }
+            if (state.IsKeyDown(Keys.Up) && position.Y > 0)
+            {
+                position.Y--;
+            }
+            if (state.IsKeyDown(Keys.Down) && position.Y + height < Controler.graphics.PreferredBackBufferHeight)
+            {
+                position.Y++;
+            }
         }
-
+        #region TO DO
         public void fire(KeyboardState state)
         {//use weapon[x].firerate to change the "fire key mode" like key pressed = continue shot or key pressed = one shot
         }
@@ -81,7 +98,7 @@ namespace MyGames.Core
                     break;
             }
         }
-
+        #endregion
         #endregion
 
         public int Stealth
@@ -96,5 +113,4 @@ namespace MyGames.Core
             set { weaponEquip = value; }
         }
     }
-}
-;
+};
