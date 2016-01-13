@@ -19,10 +19,12 @@ namespace MyGames.Core
         private Power p;
         private Weapon[] weapons;
         private typeOfWeapon weaponEquip;
+        private int jump;
 
         public Player(int height, int width, int xPos, int yPos)
-            : base(height, width, xPos, yPos)
+            : base(height, width, xPos, yPos-height)
         {
+            jump = height * 4;
             p = null;
             health = 100;
             dmg = 20;
@@ -65,18 +67,22 @@ namespace MyGames.Core
             if (state.IsKeyDown(Keys.Left))
             {
                 position.X--;
-            }
-            if (state.IsKeyDown(Keys.Right))
+            }else if (state.IsKeyDown(Keys.Right))
             {
                 position.X++;
             }
-            if (state.IsKeyDown(Keys.Up) && position.Y > 0)
+            if(state.IsKeyDown(Keys.W))
             {
-                position.Y--;
+                position.Y += height/4;      
+            }else if(position.Y > 0)
+            {
+                position.Y += height / 2;
             }
-            if (state.IsKeyDown(Keys.Down) && position.Y + height < Controler.graphics.PreferredBackBufferHeight)
-            {
-                position.Y++;
+            if (state.IsKeyDown(Keys.Up))
+            {//Watch top
+            }
+            if (state.IsKeyDown(Keys.Down))
+            {//Watch bot if jump else action 
             }
         }
         #region TO DO

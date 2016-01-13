@@ -33,7 +33,7 @@ namespace MyGames
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            player = new Player(10, 10, 0, 0);
+            player = new Player(10, 10, 0, graphics.PreferredBackBufferHeight);
             base.Initialize();
         }
 
