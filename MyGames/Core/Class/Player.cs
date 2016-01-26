@@ -24,7 +24,7 @@ namespace MyGames.Core
         public Player(int height, int width, int xPos, int yPos)
             : base(height, width, xPos, yPos-height)
         {
-            jump = height * 4;
+            jump = 0;
             p = null;
             health = 100;
             dmg = 20;
@@ -62,7 +62,27 @@ namespace MyGames.Core
         }
 
         #region Control
-        public void move(KeyboardState state)
+        public void control(KeyboardState state)
+        {
+            if(state.IsKeyDown(Keys.Left) || state.IsKeyDown(Keys.Right) || state.IsKeyDown(Keys.Up) || state.IsKeyDown(Keys.W) || state.IsKeyDown(Keys.Down))
+            {
+                move(state);
+            }
+            if (state.IsKeyDown(Keys.X))
+            {
+                fire();
+            }
+            if(state.IsKeyDown(Keys.Q))
+            {
+                changeWeapons();
+            }
+            if (state.IsKeyDown(Keys.C))
+            {
+                power();
+            }
+        }
+
+        private void move(KeyboardState state)
         {//directionnal cross
             if (state.IsKeyDown(Keys.Left))
             {
@@ -71,12 +91,18 @@ namespace MyGames.Core
             {
                 position.X++;
             }
-            if(state.IsKeyDown(Keys.W))
+            if(state.IsKeyDown(Keys.W) && jump <= 2)
             {
-                position.Y += height/4;      
-            }else if(position.Y > 0)
+                position.Y -= height/2;
+                jump++;
+            }
+            if(position.Y + height < Controler.graphics.PreferredBackBufferHeight)
             {
-                position.Y += height / 2;
+                position.Y += height / 4;
+            }
+            else
+            {
+                jump--;
             }
             if (state.IsKeyDown(Keys.Up))
             {//Watch top
@@ -85,26 +111,29 @@ namespace MyGames.Core
             {//Watch bot if jump else action 
             }
         }
+
         #region TO DO
-        public void fire(KeyboardState state)
+        private void fire()
         {//use weapon[x].firerate to change the "fire key mode" like key pressed = continue shot or key pressed = one shot
         }
 
-        public void power(KeyboardState state)
+        private void power()
         {//nade (throw a nade : 20dmg zone : 3*3) , dash (boost next attack (dmg or firerate up?) + armor : +20 tmp) or snipe (os : 200 dmg)
         }
+        #endregion
 
-        public void changeWeapons(KeyboardState state)
+        private void changeWeapons()
         {//if key pressed => TO DO
             switch (weaponEquip)
             {
-                case typeOfWeapon.MAIN: weaponEquip = typeOfWeapon.SECONDARY;
+                case typeOfWeapon.MAIN:
+                    weaponEquip = typeOfWeapon.SECONDARY;
                     break;
-                case typeOfWeapon.SECONDARY: weaponEquip = typeOfWeapon.MAIN;
+                case typeOfWeapon.SECONDARY:
+                    weaponEquip = typeOfWeapon.MAIN;
                     break;
             }
         }
-        #endregion
         #endregion
 
         public int Stealth

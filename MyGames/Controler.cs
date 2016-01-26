@@ -67,7 +67,7 @@ namespace MyGames
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            player.move(Keyboard.GetState());
+            player.control(Keyboard.GetState());
             // TODO: Add your update logic here
 
             base.Update(gameTime);
