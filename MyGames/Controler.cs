@@ -13,7 +13,7 @@ namespace MyGames
     {
         public static GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Player player; 
+        Core.Model model;
         
         public Controler()
         {
@@ -33,7 +33,7 @@ namespace MyGames
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            player = new Player(10, 10, 0, graphics.PreferredBackBufferHeight);
+            model = new Core.Model();
             base.Initialize();
         }
 
@@ -45,7 +45,7 @@ namespace MyGames
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            player.Texture = Content.Load<Texture2D>("tmpTest");
+            model.Player.Texture = Content.Load<Texture2D>("tmpTest");
             // TODO: use this.Content to load your game content here
         }
 
@@ -67,7 +67,7 @@ namespace MyGames
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            player.control(Keyboard.GetState());
+            model.Player.control(Keyboard.GetState());
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -86,7 +86,7 @@ namespace MyGames
 
             base.Draw(gameTime);
             spriteBatch.Begin();
-            player.Draw(spriteBatch);
+            model.Player.Draw(spriteBatch);
             spriteBatch.End();
         }
     }

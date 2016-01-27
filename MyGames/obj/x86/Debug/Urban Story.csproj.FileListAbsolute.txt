@@ -51,3 +51,4 @@ D:\NinjaGames\NinjaGames\MyGames\bin\Windows\Debug\SharpDX.RawInput.xml
 D:\NinjaGames\NinjaGames\MyGames\bin\Windows\Debug\SharpDX.Direct3D9.xml
 D:\NinjaGames\NinjaGames\MyGames\obj\x86\Debug\Urban Story.csprojResolveAssemblyReference.cache
 D:\NinjaGames\NinjaGames\MyGames\bin\Windows\Debug\Content\tmpTest.png
+D:\NinjaGames\NinjaGames\MyGames\bin\Windows\Debug\Content\tmpBuilding.png

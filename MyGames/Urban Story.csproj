@@ -64,6 +64,9 @@
     <Content Include="Content\Shuriken.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\tmpBuilding.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\tmpTest.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
