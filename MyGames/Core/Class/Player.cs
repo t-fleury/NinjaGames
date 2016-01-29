@@ -15,7 +15,7 @@ namespace MyGames.Core
 
     class Player : Perso
     {
-        private int stealth;
+        private bool stealth;
         private Power p;
         private Weapon[] weapons;
         private typeOfWeapon weaponEquip;
@@ -29,7 +29,7 @@ namespace MyGames.Core
             health = 100;
             dmg = 20;
             armor = 50;
-            stealth = 75;
+            stealth = false;
             weapons = new Weapon[2] {null, null};
             weapons[0] = new Weapon("shuriken", "classic");
             weaponEquip = typeOfWeapon.MAIN;
@@ -136,7 +136,7 @@ namespace MyGames.Core
         }
         #endregion
 
-        public int Stealth
+        public bool Stealth
         {
             get { return stealth; }
             set { stealth = value; }

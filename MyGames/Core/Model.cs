@@ -27,5 +27,10 @@ namespace MyGames.Core
         {
             get { return player; }
         }
+
+        public Building Building
+        {
+            get { return building; }
+        }
     }
 }

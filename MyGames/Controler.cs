@@ -46,6 +46,8 @@ namespace MyGames
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             model.Player.Texture = Content.Load<Texture2D>("tmpTest");
+            model.Building.Texture = Content.Load<Texture2D>("tmpBuilding");
+            
             // TODO: use this.Content to load your game content here
         }
 
@@ -86,7 +88,7 @@ namespace MyGames
 
             base.Draw(gameTime);
             spriteBatch.Begin();
-            model.Player.Draw(spriteBatch);
+            model.Draw(spriteBatch);
             spriteBatch.End();
         }
     }
