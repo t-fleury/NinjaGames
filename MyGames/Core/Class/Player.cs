@@ -96,14 +96,6 @@ namespace MyGames.Core
                 position.Y -= height/2;
                 jump++;
             }
-            if(position.Y + height < Controler.graphics.PreferredBackBufferHeight)
-            {
-                position.Y += height / 4;
-            }
-            else
-            {
-                jump--;
-            }
             if (state.IsKeyDown(Keys.Up))
             {//Watch top
             }
@@ -136,6 +128,8 @@ namespace MyGames.Core
         }
         #endregion
 
+        #region get/set
+
         public bool Stealth
         {
             get { return stealth; }
@@ -147,5 +141,12 @@ namespace MyGames.Core
             get { return weaponEquip; }
             set { weaponEquip = value; }
         }
+
+        public int Jump
+        {
+            get { return jump; }
+            set { jump = value; }
+        }
+        #endregion
     }
 };

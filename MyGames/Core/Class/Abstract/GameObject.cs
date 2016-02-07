@@ -30,13 +30,35 @@ namespace MyGames.Core
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            /*Vector2 tmp = new Vector2();
-            tmp.X = 0;
-            tmp.Y = 0;
-            float scale = 0.67f;
-            spriteBatch.Draw(texture, position, null, Color.White, 0.0f, tmp,scale,SpriteEffects.None,0.0f);*/
             spriteBatch.Draw(texture, position, Color.White);
         }
 
+        #region get/set
+        public Vector2 Position
+        {
+            get { return position; }
+        }
+
+        public int Height
+        {
+            get { return height; }
+        }
+
+        public int Width
+        {
+            get { return width; }
+        }
+
+        public float PosX
+        {
+            set { position.X = value; }
+        }
+
+        public float PosY
+        {
+            get { return position.Y; }
+            set { position.Y = value; }
+        }
+        #endregion
     }
 }

@@ -21,7 +21,6 @@ namespace MyGames
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
-            
         }
 
         /// <summary>
@@ -69,6 +68,7 @@ namespace MyGames
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            model.gravity();
             model.Player.control(Keyboard.GetState());
             // TODO: Add your update logic here
 
