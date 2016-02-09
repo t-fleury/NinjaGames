@@ -21,7 +21,6 @@ namespace MyGames.Core
         {
             if (player.Position.Y + player.Height < Controler.graphics.PreferredBackBufferHeight)
             {
-                player.Jump--;
                 player.PosY = player.PosY + player.Height / 4;
             }
         }

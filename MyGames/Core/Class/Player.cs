@@ -91,10 +91,9 @@ namespace MyGames.Core
             {
                 position.X++;
             }
-            if(state.IsKeyDown(Keys.W) && jump <= 2)
+            if(state.IsKeyDown(Keys.W))
             {
                 position.Y -= height/2;
-                jump++;
             }
             if (state.IsKeyDown(Keys.Up))
             {//Watch top
@@ -140,12 +139,6 @@ namespace MyGames.Core
         {
             get { return weaponEquip; }
             set { weaponEquip = value; }
-        }
-
-        public int Jump
-        {
-            get { return jump; }
-            set { jump = value; }
         }
         #endregion
     }
