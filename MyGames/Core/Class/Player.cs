@@ -19,12 +19,12 @@ namespace MyGames.Core
         private Power p;
         private Weapon[] weapons;
         private typeOfWeapon weaponEquip;
-        private int jump;
+        private int fuel; //use for jump
 
         public Player(int height, int width, int xPos, int yPos)
             : base(height, width, xPos, yPos-height)
         {
-            jump = 0;
+            fuel = 5;
             p = null;
             health = 100;
             dmg = 20;
@@ -36,7 +36,11 @@ namespace MyGames.Core
         }
 
 
-        //Use one time per game
+        /// <summary>
+        /// Use one time per game
+        /// Use to tranforsm the player and give him a power and a type of weapon
+        /// </summary>
+       
         public void Transformation(int choix)
         {
             weapons = null;
@@ -62,27 +66,7 @@ namespace MyGames.Core
         }
 
         #region Control
-        public void control(KeyboardState state)
-        {
-            if(state.IsKeyDown(Keys.Left) || state.IsKeyDown(Keys.Right) || state.IsKeyDown(Keys.Up) || state.IsKeyDown(Keys.W) || state.IsKeyDown(Keys.Down))
-            {
-                move(state);
-            }
-            if (state.IsKeyDown(Keys.X))
-            {
-                fire();
-            }
-            if(state.IsKeyDown(Keys.Q))
-            {
-                changeWeapons();
-            }
-            if (state.IsKeyDown(Keys.C))
-            {
-                power();
-            }
-        }
-
-        private void move(KeyboardState state)
+        public void move(KeyboardState state)
         {//directionnal cross
             if (state.IsKeyDown(Keys.Left))
             {
@@ -91,10 +75,7 @@ namespace MyGames.Core
             {
                 position.X++;
             }
-            if(state.IsKeyDown(Keys.W))
-            {
-                position.Y -= height/2;
-            }
+            
             if (state.IsKeyDown(Keys.Up))
             {//Watch top
             }
@@ -103,17 +84,22 @@ namespace MyGames.Core
             }
         }
 
+        public void jump()
+        {
+            position.Y -= height / 4;
+        }
+
         #region TO DO
-        private void fire()
+        public void fire()
         {//use weapon[x].firerate to change the "fire key mode" like key pressed = continue shot or key pressed = one shot
         }
 
-        private void power()
+        public void power()
         {//nade (throw a nade : 20dmg zone : 3*3) , dash (boost next attack (dmg or firerate up?) + armor : +20 tmp) or snipe (os : 200 dmg)
         }
         #endregion
 
-        private void changeWeapons()
+        public void changeWeapons()
         {//if key pressed => TO DO
             switch (weaponEquip)
             {
@@ -128,7 +114,6 @@ namespace MyGames.Core
         #endregion
 
         #region get/set
-
         public bool Stealth
         {
             get { return stealth; }
@@ -139,6 +124,12 @@ namespace MyGames.Core
         {
             get { return weaponEquip; }
             set { weaponEquip = value; }
+        }
+
+        public int Fuel
+        {
+            get { return fuel; }
+            set { fuel = value; }
         }
         #endregion
     }

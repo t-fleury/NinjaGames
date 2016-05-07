@@ -14,13 +14,18 @@ namespace MyGames
         public static GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Core.Model model;
-        
+        Texture2D building;
+        bool[] blockedAxes;
+        int timeJump;
+
         public Controler()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
+            blockedAxes = new bool[4] { false, false, false, false };
+            timeJump = 5;
         }
 
         /// <summary>
@@ -44,10 +49,16 @@ namespace MyGames
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            model.Player.Texture = Content.Load<Texture2D>("tmpTest");
-            model.Building.Texture = Content.Load<Texture2D>("tmpBuilding");
-            
-            // TODO: use this.Content to load your game content here
+            model.Player.Texture = this.Content.Load<Texture2D>("tmpTest");
+            building = this.Content.Load<Texture2D>("tmpBuilding");
+
+            foreach (GameObject ob in model.Objects)
+            {
+                if (ob.GetType() == typeof(Building))
+                {
+                    ob.Texture = building;
+                }
+            }
         }
 
         /// <summary>
@@ -66,14 +77,51 @@ namespace MyGames
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-            model.gravity();
-            model.Player.control(Keyboard.GetState());
-            // TODO: Add your update logic here
-
+            KeyboardState state = Keyboard.GetState();
+            if (state.IsKeyDown(Keys.Escape))
+            {
+                //TODO menu
+            }
+            blockedAxes = model.playerCollision();
+            if ((state.IsKeyDown(Keys.Left) && !blockedAxes[1]) || (state.IsKeyDown(Keys.Right) && !blockedAxes[0]))
+            {
+                model.Player.move(state);
+            }
+            if (state.IsKeyDown(Keys.W) && !blockedAxes[2] /*&& model.Player.Fuel > 0 && timeJump > 0*/)
+            {
+               /* model.Player.Fuel--;
+                if (model.Player.Fuel == 0)
+                {
+                    timeJump = 5;
+                }*/
+                model.Player.jump();
+            }
+            if (!blockedAxes[3])
+            {
+                /*timeJump++;
+                if(timeJump >= 5)
+                {
+                    model.Player.Fuel = 5;
+                }*/
+                model.gravity();
+            }
+            if (state.IsKeyDown(Keys.Up) || state.IsKeyDown(Keys.Down))
+            {
+                model.Player.move(state);
+            }
+            if (state.IsKeyDown(Keys.X))
+            {
+                model.Player.fire();
+            }
+            if (state.IsKeyDown(Keys.Q))
+            {
+                model.Player.changeWeapons();
+            }
+            if (state.IsKeyDown(Keys.C))
+            {
+                model.Player.power();
+            }
             base.Update(gameTime);
-       
         }
 
         /// <summary>

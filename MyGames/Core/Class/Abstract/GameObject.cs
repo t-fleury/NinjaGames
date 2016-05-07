@@ -22,12 +22,6 @@ namespace MyGames.Core
             position.Y = yPos;
         }
 
-        public Texture2D Texture
-        {
-            get { return texture; }
-            set { texture = value; }
-        }
-
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, Color.White);
@@ -51,6 +45,7 @@ namespace MyGames.Core
 
         public float PosX
         {
+            get { return position.X; }
             set { position.X = value; }
         }
 
@@ -58,6 +53,12 @@ namespace MyGames.Core
         {
             get { return position.Y; }
             set { position.Y = value; }
+        }
+
+        public Texture2D Texture
+        {
+            get { return texture; }
+            set { texture = value; }
         }
         #endregion
     }
