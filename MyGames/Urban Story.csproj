@@ -39,14 +39,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controler.cs" />
-    <Compile Include="Core\Class\Building.cs" />
+    <Compile Include="Core\Class\nonMovibleObject\Building.cs" />
     <Compile Include="Core\Class\Enemy.cs" />
     <Compile Include="Core\Class\Abstract\GameObject.cs" />
     <Compile Include="Core\Class\Abstract\Perso.cs" />
     <Compile Include="Core\Class\Player.cs" />
     <Compile Include="Core\Class\Power.cs" />
+    <Compile Include="Core\Class\Shoot.cs" />
     <Compile Include="Core\Class\Store.cs" />
     <Compile Include="Core\Class\Weapon.cs" />
+    <Compile Include="Core\Class\nonMovibleObject\Platform.cs" />
     <Compile Include="Core\Zone.cs" />
     <Compile Include="Core\Model.cs" />
     <Compile Include="Program.cs" />
@@ -65,6 +67,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\tmpBuilding.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tmpPlatform.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tmpShoot.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\tmpTest.png">

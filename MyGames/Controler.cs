@@ -15,8 +15,11 @@ namespace MyGames
         SpriteBatch spriteBatch;
         Core.Model model;
         Texture2D building;
+        Texture2D platform;
+        Texture2D shoot;
         bool[] blockedAxes;
-        int timeJump;
+        bool[] blockedAxesFall;
+        bool fall;
 
         public Controler()
         {
@@ -24,8 +27,6 @@ namespace MyGames
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
-            blockedAxes = new bool[4] { false, false, false, false };
-            timeJump = 5;
         }
 
         /// <summary>
@@ -37,6 +38,8 @@ namespace MyGames
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            blockedAxes = new bool[5] { false, false, false, false, false };
+            blockedAxesFall = new bool[2] { false, false };
             model = new Core.Model();
             base.Initialize();
         }
@@ -51,12 +54,18 @@ namespace MyGames
             spriteBatch = new SpriteBatch(GraphicsDevice);
             model.Player.Texture = this.Content.Load<Texture2D>("tmpTest");
             building = this.Content.Load<Texture2D>("tmpBuilding");
+            platform = this.Content.Load<Texture2D>("tmpPlatform");
+            shoot = this.Content.Load<Texture2D>("tmpShoot");
 
             foreach (GameObject ob in model.Objects)
             {
                 if (ob.GetType() == typeof(Building))
                 {
                     ob.Texture = building;
+                }
+                else if (ob.GetType() == typeof(Platform))
+                {
+                    ob.Texture = platform;
                 }
             }
         }
@@ -82,45 +91,74 @@ namespace MyGames
             {
                 //TODO menu
             }
+            #region using a key
             blockedAxes = model.playerCollision();
-            if ((state.IsKeyDown(Keys.Left) && !blockedAxes[1]) || (state.IsKeyDown(Keys.Right) && !blockedAxes[0]))
+            blockedAxesFall[0] = false;
+            blockedAxesFall[1] = false;
+            fall = false;
+           
+            #region jump/fall
+            if (model.Player.PosY > model.PlayerJump && model.playerCollisionJumpCase() == false)
             {
-                model.Player.move(state);
+                model.jump();
             }
-            if (state.IsKeyDown(Keys.W) && !blockedAxes[2] /*&& model.Player.Fuel > 0 && timeJump > 0*/)
+            else if (state.IsKeyDown(Keys.W) && blockedAxes[2] == false && (blockedAxes[3] == true || blockedAxes[4] == true))
             {
-               /* model.Player.Fuel--;
-                if (model.Player.Fuel == 0)
-                {
-                    timeJump = 5;
-                }*/
-                model.Player.jump();
+                model.firstJump();
+                model.jump();
             }
-            if (!blockedAxes[3])
+            else if (blockedAxes[3] == false && blockedAxes[4] == false)
             {
-                /*timeJump++;
-                if(timeJump >= 5)
-                {
-                    model.Player.Fuel = 5;
-                }*/
                 model.gravity();
+                model.PlayerJump = model.Player.PosY;
+                blockedAxesFall = model.playerCollisionFallCase();
+                fall = true;
+            } 
+            #endregion
+
+            #region move right/left
+            if (fall)
+            {
+                if ((state.IsKeyDown(Keys.Left) && blockedAxesFall[1] == false) || (state.IsKeyDown(Keys.Right) && blockedAxesFall[0] == false))
+                {
+                    model.move(state);
+                }
             }
+            else
+            {
+                if ((state.IsKeyDown(Keys.Left) && blockedAxes[1] == false) || (state.IsKeyDown(Keys.Right) && blockedAxes[0] == false))
+                {
+                    model.move(state);
+                }
+            }
+            #endregion
+
+            #region look up/down/interact
             if (state.IsKeyDown(Keys.Up) || state.IsKeyDown(Keys.Down))
             {
-                model.Player.move(state);
+                model.move(state);
             }
+            #endregion
+
+            #region other gameplay key
             if (state.IsKeyDown(Keys.X))
             {
-                model.Player.fire();
+                model.fire();
             }
+
             if (state.IsKeyDown(Keys.Q))
             {
-                model.Player.changeWeapons();
+                model.changeWeapons();
             }
+
             if (state.IsKeyDown(Keys.C))
             {
-                model.Player.power();
-            }
+                model.power();
+            }  
+            #endregion
+           
+            #endregion
+
             base.Update(gameTime);
         }
 

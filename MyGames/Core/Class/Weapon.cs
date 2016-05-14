@@ -45,7 +45,7 @@ namespace MyGames.Core
         private string name;
         private int ammo;
 
-        //random Weapon
+        ///random Weapon
         public Weapon(string type)
         {
             Random tmp = new Random();
@@ -82,7 +82,7 @@ namespace MyGames.Core
             }
         }
 
-        //Construct weapons with a type and a name
+        ///Construct weapons with a type and a name
         public Weapon(string type, string name)
         {
             switch (type)
@@ -138,10 +138,25 @@ namespace MyGames.Core
             }
         }
 
+        #region get/set
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
+
+        public int Damage
+        {
+            get { return dmg; }
+        }
+        public float Firerate
+        {
+            get { return firerate; }
+        }
+        public int Ammo
+        {
+            get { return ammo; }
+        } 
+        #endregion
     }
 }
