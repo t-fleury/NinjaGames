@@ -7,11 +7,13 @@ namespace MyGames.Core
 {       
     class Enemy : Perso
     {
+        private string type;
         //Build enemy with a type
         public Enemy(int height, int width, int xPos, int yPos, string type)
             : base(height, width, xPos, yPos)
         {
-            switch (type)
+            this.type = type;
+            switch (this.type)
             {
                 case "Lancer" :
                     health = 100;
@@ -43,6 +45,13 @@ namespace MyGames.Core
         {
         }
 
+        #endregion
+
+        #region get/set
+        public String Type
+        {
+            get { return this.type; }
+        }
         #endregion
     }
 }

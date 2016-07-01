@@ -17,6 +17,8 @@ namespace MyGames
         Core.Model model;
         Texture2D building;
         Texture2D platform;
+        Texture2D chargerTexture;
+        Texture2D crewmanTexture;
         public static Texture2D shoot;
         bool[] blockedAxes;
         bool[] blockedAxesFall;
@@ -53,10 +55,10 @@ namespace MyGames
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            model.Player.Texture = this.Content.Load<Texture2D>("tmpTest");
-            building = this.Content.Load<Texture2D>("tmpBuilding");
-            platform = this.Content.Load<Texture2D>("tmpPlatform");
-            shoot = this.Content.Load<Texture2D>("tmpShoot");
+            model.Player.Texture = this.Content.Load<Texture2D>("Ninja");
+            building = this.Content.Load<Texture2D>("Building");
+            platform = this.Content.Load<Texture2D>("Platform");
+            shoot = this.Content.Load<Texture2D>("Shoot");
 
             foreach (GameObject ob in model.Objects)
             {
@@ -67,6 +69,23 @@ namespace MyGames
                 else if (ob.GetType() == typeof(Platform))
                 {
                     ob.Texture = platform;
+                }
+                else if (ob.GetType() == typeof(Enemy))
+                {
+                    Enemy tmp = (Enemy)ob;
+                    switch (tmp.Type)
+                    {
+                        case "Lancer":
+                            break;
+                        case "Crewman":
+                            break;
+                        case "Charger":
+                            break;
+                        case "Runner":
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
@@ -161,7 +180,7 @@ namespace MyGames
 
             #endregion
 
-            foreach(Shoot s in model.Player.Shoots)
+            foreach (Shoot s in model.Player.Shoots)
             {
                 s.move();
             }
@@ -182,7 +201,7 @@ namespace MyGames
         private void moveShoot(int i)
         {
             Perso tmp = (Perso)model.Objects[i];
-            foreach(Shoot s in tmp.Shoots)
+            foreach (Shoot s in tmp.Shoots)
             {
                 s.move();
             }

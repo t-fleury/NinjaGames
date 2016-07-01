@@ -42,6 +42,7 @@ namespace MyGames.Core
         }
 
         #region Collisions
+        #region Player
         /// <summary>
         /// Normal collision with player
         /// </summary>
@@ -146,6 +147,10 @@ namespace MyGames.Core
             }
             return blockedAxe;
         }
+        #endregion
+        #region Shoots
+
+        #endregion
         #endregion
 
         #region Controls
