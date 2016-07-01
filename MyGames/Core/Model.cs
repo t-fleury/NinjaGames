@@ -149,6 +149,7 @@ namespace MyGames.Core
         #endregion
 
         #region Controls
+        #region move/look
         public void move(KeyboardState state)
         {//directionnal cross
             if (state.IsKeyDown(Keys.Left))
@@ -166,6 +167,7 @@ namespace MyGames.Core
             {//Watch bot if jump else action 
             }
         }
+        #endregion
 
         #region jump
         public void firstJump()
@@ -179,6 +181,7 @@ namespace MyGames.Core
         }
         #endregion
 
+        #region other gameplay key
         public void fire()
         {
             int height = 0;
@@ -188,16 +191,16 @@ namespace MyGames.Core
             {
                 case typeOfWeapon.MAIN:
                     {
-                        switch
+                        dmg = Player.Weapons[0].Damage;
                     }
                     break;
                 case typeOfWeapon.SECONDARY:
                     {
-
+                        dmg = Player.Weapons[1].Damage;
                     }
                     break;
             }
-            Player.Shoots.Add(new Shoot(height,width,(int)Player.PosX + Player.Width, (int)Player.PosY / 2 - height, dmg));
+            Player.Shoots.Add(new Shoot(height, width, (int)Player.PosX + Player.Width, (int)Player.PosY + (height / 2), dmg));
         }
 
         #region TO DO
@@ -219,14 +222,32 @@ namespace MyGames.Core
             }
         }
         #endregion
+        #endregion
 
+        #region Draw
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (GameObject obj in listObject)
+            int i = 0;
+            foreach (GameObject ob in listObject)
             {
-                obj.Draw(spriteBatch);
+                ob.Draw(spriteBatch);
+                if (ob.GetType() == typeof(Player) || ob.GetType() == typeof(Enemy))
+                {
+                    DrawShoot(i, spriteBatch);
+                }
+                i++;
             }
         }
+
+        private void DrawShoot(int i, SpriteBatch spriteBatch)
+        {
+            Perso tmp = (Perso)listObject[i];
+            foreach (Shoot s in tmp.Shoots)
+            {
+                s.Draw(spriteBatch);
+            }
+        } 
+        #endregion
 
         #region get/set
         public Player Player

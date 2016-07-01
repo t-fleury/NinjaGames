@@ -39,7 +39,6 @@ namespace MyGames.Core
         /// Use one time per game
         /// Use to tranforsm the player and give him a power and a type of weapon
         /// </summary>
-
         public void Transformation(int choix)
         {
             weapons = null;
@@ -75,6 +74,12 @@ namespace MyGames.Core
         {
             get { return weaponEquip; }
             set { weaponEquip = value; }
+        }
+
+        public Weapon[] Weapons
+        {
+            get { return weapons; }
+            set { weapons = value; }
         }
         #endregion
     }

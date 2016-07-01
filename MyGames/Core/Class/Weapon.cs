@@ -45,7 +45,10 @@ namespace MyGames.Core
         private string name;
         private int ammo;
 
-        ///random Weapon
+        /// <summary>
+        /// Build a random weapon with a type
+        /// </summary>
+        /// <param name="type"> Type of weapon </param>
         public Weapon(string type)
         {
             Random tmp = new Random();
@@ -82,7 +85,11 @@ namespace MyGames.Core
             }
         }
 
-        ///Construct weapons with a type and a name
+        /// <summary>
+        /// Build weapons with a type and a name
+        /// </summary>
+        /// <param name="type"> Type of weapon </param>
+        /// <param name="name"> Name of weapon </param>
         public Weapon(string type, string name)
         {
             switch (type)

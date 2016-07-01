@@ -12,7 +12,13 @@ namespace MyGames.Core.Class
         public Shoot(int height, int width, int xPos, int yPos, int dmg)
             : base(height, width, xPos, yPos)
         {
+            this.Texture = Controler.shoot;
             this.dmg = dmg;
+        }
+
+        public void move()
+        {
+            this.PosX++;
         }
     }
 }

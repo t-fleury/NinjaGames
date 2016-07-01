@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MyGames.Core;
+using MyGames.Core.Class;
 using System;
 
 namespace MyGames
@@ -16,7 +17,7 @@ namespace MyGames
         Core.Model model;
         Texture2D building;
         Texture2D platform;
-        Texture2D shoot;
+        public static Texture2D shoot;
         bool[] blockedAxes;
         bool[] blockedAxesFall;
         bool fall;
@@ -91,12 +92,13 @@ namespace MyGames
             {
                 //TODO menu
             }
+
             #region using a key
             blockedAxes = model.playerCollision();
             blockedAxesFall[0] = false;
             blockedAxesFall[1] = false;
             fall = false;
-           
+
             #region jump/fall
             if (model.Player.PosY > model.PlayerJump && model.playerCollisionJumpCase() == false)
             {
@@ -113,7 +115,7 @@ namespace MyGames
                 model.PlayerJump = model.Player.PosY;
                 blockedAxesFall = model.playerCollisionFallCase();
                 fall = true;
-            } 
+            }
             #endregion
 
             #region move right/left
@@ -154,12 +156,36 @@ namespace MyGames
             if (state.IsKeyDown(Keys.C))
             {
                 model.power();
-            }  
-            #endregion
-           
+            }
             #endregion
 
+            #endregion
+
+            foreach(Shoot s in model.Player.Shoots)
+            {
+                s.move();
+            }
+
+            int i = 0;
+            foreach (GameObject ob in model.Objects)
+            {
+                if (ob.GetType() == typeof(Enemy))
+                {
+                    moveShoot(i);
+                }
+                i++;
+            }
+
             base.Update(gameTime);
+        }
+
+        private void moveShoot(int i)
+        {
+            Perso tmp = (Perso)model.Objects[i];
+            foreach(Shoot s in tmp.Shoots)
+            {
+                s.move();
+            }
         }
 
         /// <summary>

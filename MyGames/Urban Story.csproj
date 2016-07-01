@@ -42,7 +42,7 @@
     <Compile Include="Core\Class\nonMovibleObject\Building.cs" />
     <Compile Include="Core\Class\Enemy.cs" />
     <Compile Include="Core\Class\Abstract\GameObject.cs" />
-    <Compile Include="Core\Class\Abstract\Perso.cs" />
+    <Compile Include="Core\Class\Perso.cs" />
     <Compile Include="Core\Class\Player.cs" />
     <Compile Include="Core\Class\Power.cs" />
     <Compile Include="Core\Class\Shoot.cs" />
@@ -53,7 +53,6 @@
     <Compile Include="Core\Model.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\View.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
